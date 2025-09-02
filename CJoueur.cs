@@ -11,21 +11,21 @@ namespace jeuPuissance4
 
     {
         private string nom { get; set; }
-        private bool gagnant{  get; set; }
+        private bool gagnant { get; set; }
          private int checkPoints { get; set; }
-        private Jeton monJeton {get; set; }
+        private Jeton jeton { get; set; }
 
         public Jeton GetJeton()
         {
-            return monJeton;
+            return jeton;
            
         }
 
         public void setJeton(string symbole, int points)
         {
-            monJeton = new Jeton();
-            monJeton.Symbole = symbole;
-            monJeton.Points = points;
+            jeton = new Jeton();
+            jeton.Symbole = symbole;
+            jeton.Points = points;
 
         }
 
