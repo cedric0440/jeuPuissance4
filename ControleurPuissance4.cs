@@ -8,5 +8,6 @@ namespace jeuPuissance4
 {
     public class ControleurPuissance4
     {
+
     }
 }
