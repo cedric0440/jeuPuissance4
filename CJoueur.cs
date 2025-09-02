@@ -15,6 +15,7 @@ namespace jeuPuissance4
          private int checkPoints { get; set; }
         private Jeton jeton { get; set; }
 
+
         public Jeton GetJeton()
         {
             return jeton;
