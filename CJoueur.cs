@@ -23,10 +23,7 @@ namespace jeuPuissance4
 
         public void setJeton(string symbole, int points)
         {
-            jeton = new Jeton();
-            jeton.Symbole = symbole;
-            jeton.Points = points;
-
+            jeton = new Jeton(symbole, points);
         }
 
         public void ProcederChoix(ref Plateau leplateau, int colonne, int ligne)

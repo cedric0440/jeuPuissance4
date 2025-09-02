@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace jeuPuissance4
 {
-    internal class ControleurPuissance4
+    public class ControleurPuissance4
     {
     }
 }
