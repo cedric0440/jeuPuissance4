@@ -24,6 +24,7 @@ namespace jeuPuissance4
             Symbole =  symbole;
             Point = point;
             gagnant = false;
+
         }
 
 
