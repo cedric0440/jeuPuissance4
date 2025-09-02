@@ -1,4 +1,6 @@
-﻿public class Plateau
+﻿using jeuPuissance4;
+
+public class Plateau
 {
     public const int NOMBRE_CASES = 42;
     public const int NOMBRE_COLONNES = 7;
@@ -41,14 +43,16 @@
             for (int colonne = 0; colonne < NOMBRE_COLONNES; colonne++)
             {
                 Jeton jeton = plateau[ligne, colonne];
-                if (jeton != null && jeton.gagnant)
+
+                // Correction: ne vérifier que si le jeton existe
+                if (jeton != null)
                 {
                     // Vérifier horizontal (→)
                     int countHorizontal = 0;
                     for (int i = 0; i < checkPoints && colonne + i < NOMBRE_COLONNES; i++)
                     {
                         Jeton j = plateau[ligne, colonne + i];
-                        if (j != null && j.symbole == jeton.symbole)
+                        if (j != null && j.Symbole == jeton.Symbole)
                             countHorizontal++;
                         else
                             break;
@@ -60,7 +64,7 @@
                     for (int i = 0; i < checkPoints && ligne + i < NOMBRE_RANGEES; i++)
                     {
                         Jeton j = plateau[ligne + i, colonne];
-                        if (j != null && j.symbole == jeton.symbole)
+                        if (j != null && j.Symbole == jeton.Symbole)
                             countVertical++;
                         else
                             break;
@@ -72,7 +76,7 @@
                     for (int i = 0; i < checkPoints && ligne + i < NOMBRE_RANGEES && colonne + i < NOMBRE_COLONNES; i++)
                     {
                         Jeton j = plateau[ligne + i, colonne + i];
-                        if (j != null && j.symbole == jeton.symbole)
+                        if (j != null && j.Symbole == jeton.Symbole)
                             countDiagDesc++;
                         else
                             break;
@@ -84,7 +88,7 @@
                     for (int i = 0; i < checkPoints && ligne - i >= 0 && colonne + i < NOMBRE_COLONNES; i++)
                     {
                         Jeton j = plateau[ligne - i, colonne + i];
-                        if (j != null && j.symbole == jeton.symbole)
+                        if (j != null && j.Symbole == jeton.Symbole)
                             countDiagMont++;
                         else
                             break;
@@ -96,7 +100,8 @@
         return false;
     }
 
-    public bool IsCaseDisponible(int colonne)
+
+public bool IsCaseDisponible(int colonne)
     {
         if (colonne < 0 || colonne >= NOMBRE_COLONNES)
             return false;

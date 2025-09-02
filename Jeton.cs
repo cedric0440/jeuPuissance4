@@ -15,18 +15,25 @@ namespace jeuPuissance4
         public const int POINTS_2 = -1;
         public const int CHECK_POINT_1 = 4;
         public const int CHECK_POINT_2 = -4;
-        private string symbole { get; set; }
+        private string symbole;
+
+        public string Symbole
+        {
+            get { return symbole; }
+            set { symbole = value; }
+        }
+
         private int point { get; set; }
-        private bool gagnant { get; set; }
+    
 
         public Jeton(string Symbole,int Point)
         {
             Symbole =  symbole;
             Point = point;
-            gagnant = false;
+      
 
         }
 
-
+     
     }
 }
