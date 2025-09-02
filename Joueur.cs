@@ -7,13 +7,30 @@ using System.Threading.Tasks;
 namespace jeuPuissance4
 {
 
-    public class CJoueur
+    public class Joueur
 
     {
         private string nom { get; set; }
         private bool gagnant { get; set; }
          private int checkPoints { get; set; }
         private Jeton jeton { get; set; }
+        // Constructeur
+        public Joueur(string nom)
+        {
+            this.nom = nom;
+            this.gagnant = false;
+            this.checkPoints = 0;
+            this.jeton = new Jeton(" ", 0);
+
+        }
+
+        public Joueur(string nom, string symbole, int points)
+        {
+            this.nom = nom;
+            this.gagnant = false;
+            this.checkPoints = points;
+            this.jeton = new Jeton(symbole, points);
+        }
 
         public Jeton GetJeton()
         {
