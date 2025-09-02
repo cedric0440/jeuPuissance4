@@ -10,10 +10,10 @@ namespace jeuPuissance4
     public class CJoueur
 
     {
-        private string nom;
-        private bool gagnant;
-        private int checkPoints;
-        private Jeton monJeton;
+        private string nom { get; set; }
+        private bool gagnant{  get; set; }
+         private int checkPoints { get; set; }
+        private Jeton monJeton {get; set; }
 
         public Jeton GetJeton()
         {
