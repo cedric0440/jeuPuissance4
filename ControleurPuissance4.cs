@@ -14,16 +14,11 @@ namespace jeuPuissance4
         private Joueur joueur1;
         private Joueur joueur2;
 
-        // Constructeur
         public ControleurPuissance4(string nomJoueur1, string nomJoueur2)
         {
             compteurTour = 0;
             plateau = new Plateau();
-
-            // joueur1 avec "X" et points = 1
             joueur1 = new Joueur(nomJoueur1, Jeton.JETON_X, Jeton.POINTS_1);
-
-            // joueur2 avec "O" et points = -1
             joueur2 = new Joueur(nomJoueur2, Jeton.JETON_O, Jeton.POINTS_2);
         }
 
