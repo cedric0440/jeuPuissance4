@@ -59,7 +59,7 @@ namespace jeuPuissance4.Controleur
         }
         public bool IsGagnant()
         {
-            
+            return plateau.DeterminerGagnant(joueur1.CheckPoint) || plateau.DeterminerGagnant(joueur2.CheckPoint);
         }
         public int GetCompteurTour()
         {
