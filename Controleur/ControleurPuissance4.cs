@@ -59,7 +59,7 @@ namespace jeuPuissance4.Controleur
         }
         public bool IsGagnant()
         {
-            return true;
+            
         }
         public int GetCompteurTour()
         {
@@ -67,7 +67,13 @@ namespace jeuPuissance4.Controleur
         }
         public string GetSymbole(int numeroJoueur)
         {
-            return "aaa";
+            if (numeroJoueur == 1)
+            {
+                return joueur1.GetJeton().Symbole;
+            }
+            else{ 
+                return joueur2.GetJeton().Symbole;
+            }
         }
         public bool IsCaseDisponible(int colonne)
         {
@@ -75,7 +81,7 @@ namespace jeuPuissance4.Controleur
         }
         public void DeterminerGagnant(int joueur)
         {
-
+            
         }
         public bool IsTermine()
         {

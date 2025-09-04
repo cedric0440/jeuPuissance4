@@ -32,6 +32,16 @@ namespace jeuPuissance4.Modele
             jeton = new Jeton(symbole, points);
         }
 
+        public bool Gagnant
+        {
+            get { return gagnant; }
+            set { gagnant = value; }
+        }
+        public int CheckPoint
+        {
+            get { return checkPoints; }
+            set { checkPoints = value; }
+        }
         public Jeton GetJeton()
         {
             return jeton;
