@@ -56,7 +56,7 @@ namespace jeuPuissance4.Modele
         public void ProcederChoix(ref Plateau leplateau, int colonne, int rangee)
         {
             Jeton jeton = GetJeton();
-            leplateau.PlacerJeton(colonne, rangee, jeton);
+            leplateau.PlacerJeton(colonne, rangee, GetJeton());
 
         }
     }

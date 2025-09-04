@@ -52,18 +52,18 @@ namespace jeuPuissance4.Controleur
         {
             if (IsTermine())
             {
-            if (joueur1.Gagnant) return $"Le gagnant est {joueur1}";
-            if (joueur2.Gagnant) return $"Le gagnant est {joueur2}";
-            if (IsPlateauPlein()) return "Match nul !";
-                
+            if (joueur1.Gagnant) return $"Le gagnant est joueur1";
+            if (joueur2.Gagnant) return $"Le gagnant est joueur2";
+            
             }
             return "Aucun gagnant pour l'instant.";
         }
 
         public bool IsGagnant()
         {
-            return joueur1.Gagnant || joueur2.Gagnant;
+            return plateau.DeterminerGagnant(4);
         }
+
 
         public int GetCompteurTour()
         {
@@ -89,32 +89,24 @@ namespace jeuPuissance4.Controleur
 
         public void DeterminerGagnant()
         {
-            if (plateau.DeterminerGagnant(Jeton.CHECK_POINT_1))
+            if (plateau.DeterminerGagnant(4))
             {
-                joueur1.Gagnant = true;
-            }
-            else if (plateau.DeterminerGagnant(Jeton.CHECK_POINT_2))
-            {
-                joueur2.Gagnant = true;
+                // Vérifier quel joueur a placé le dernier coup
+                // Ici on part du principe que le compteurTour te dit qui a joué
+                if (compteurTour % 2 == 0)
+                    joueur1.Gagnant = true;
+                else
+                    joueur2.Gagnant = true;
             }
         }
 
-        // Méthode helper pour vérifier si le plateau est plein
-        private bool IsPlateauPlein()
-        {
-            for (int col = 0; col < Plateau.NOMBRE_COLONNES; col++)
-            {
-                if (plateau.IsCaseDisponible(col))
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
+
+
+
 
         public bool IsTermine()
         {
-            return IsGagnant() || ;
+            return (compteurTour >= Plateau.NOMBRE_CASES) || IsGagnant();
         }
 
   

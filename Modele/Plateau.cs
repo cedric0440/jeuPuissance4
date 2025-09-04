@@ -35,21 +35,21 @@ public class Plateau
         return NOMBRE_CASES;
     }
 
-    public bool DeterminerGagnant(int checkPoints)
+    public bool DeterminerGagnant(int checkPoint)
     {
-        // Parcourir tout le plateau
+        const int JETONS_ALIGNES_POUR_GAGNER = 4;
+
         for (int ligne = 0; ligne < NOMBRE_RANGEES; ligne++)
         {
             for (int colonne = 0; colonne < NOMBRE_COLONNES; colonne++)
             {
                 Jeton jeton = plateau[ligne, colonne];
 
-                // Correction: ne vérifier que si le jeton existe
                 if (jeton != null)
                 {
-                    // Vérifier horizontal (→)
+                    // Horizontal (→)
                     int countHorizontal = 0;
-                    for (int i = 0; i < checkPoints && colonne + i < NOMBRE_COLONNES; i++)
+                    for (int i = 0; i < JETONS_ALIGNES_POUR_GAGNER && colonne + i < NOMBRE_COLONNES; i++)
                     {
                         Jeton j = plateau[ligne, colonne + i];
                         if (j != null && j.Symbole == jeton.Symbole)
@@ -57,11 +57,11 @@ public class Plateau
                         else
                             break;
                     }
-                    if (countHorizontal >= checkPoints) return true;
+                    if (countHorizontal >= JETONS_ALIGNES_POUR_GAGNER) return true;
 
-                    // Vérifier vertical (↓)
+                    // Vertical (↓)
                     int countVertical = 0;
-                    for (int i = 0; i < checkPoints && ligne + i < NOMBRE_RANGEES; i++)
+                    for (int i = 0; i < JETONS_ALIGNES_POUR_GAGNER && ligne + i < NOMBRE_RANGEES; i++)
                     {
                         Jeton j = plateau[ligne + i, colonne];
                         if (j != null && j.Symbole == jeton.Symbole)
@@ -69,11 +69,11 @@ public class Plateau
                         else
                             break;
                     }
-                    if (countVertical >= checkPoints) return true;
+                    if (countVertical >= JETONS_ALIGNES_POUR_GAGNER) return true;
 
-                    // Vérifier diagonal descendante (↘)
+                    // Diagonale descendante (↘)
                     int countDiagDesc = 0;
-                    for (int i = 0; i < checkPoints && ligne + i < NOMBRE_RANGEES && colonne + i < NOMBRE_COLONNES; i++)
+                    for (int i = 0; i < JETONS_ALIGNES_POUR_GAGNER && ligne + i < NOMBRE_RANGEES && colonne + i < NOMBRE_COLONNES; i++)
                     {
                         Jeton j = plateau[ligne + i, colonne + i];
                         if (j != null && j.Symbole == jeton.Symbole)
@@ -81,11 +81,11 @@ public class Plateau
                         else
                             break;
                     }
-                    if (countDiagDesc >= checkPoints) return true;
+                    if (countDiagDesc >= JETONS_ALIGNES_POUR_GAGNER) return true;
 
-                    // Vérifier diagonal montante (↗)
+                    // Diagonale montante (↗)
                     int countDiagMont = 0;
-                    for (int i = 0; i < checkPoints && ligne - i >= 0 && colonne + i < NOMBRE_COLONNES; i++)
+                    for (int i = 0; i < JETONS_ALIGNES_POUR_GAGNER && ligne - i >= 0 && colonne + i < NOMBRE_COLONNES; i++)
                     {
                         Jeton j = plateau[ligne - i, colonne + i];
                         if (j != null && j.Symbole == jeton.Symbole)
@@ -93,7 +93,7 @@ public class Plateau
                         else
                             break;
                     }
-                    if (countDiagMont >= checkPoints) return true;
+                    if (countDiagMont >= JETONS_ALIGNES_POUR_GAGNER) return true;
                 }
             }
         }
@@ -101,7 +101,8 @@ public class Plateau
     }
 
 
-public bool IsCaseDisponible(int colonne)
+
+    public bool IsCaseDisponible(int colonne)
     {
         if (colonne < 0 || colonne >= NOMBRE_COLONNES)
             return false;
