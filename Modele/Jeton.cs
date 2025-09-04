@@ -5,11 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace jeuPuissance4
+namespace jeuPuissance4.Modele
 {
     public class Jeton
     {
-        public const string JETON_X ="X";
+        public const string JETON_X = "X";
         public const string JETON_O = "O";
         public const int POINTS_1 = 1;
         public const int POINTS_2 = -1;
@@ -24,16 +24,16 @@ namespace jeuPuissance4
         }
 
         private int point { get; set; }
-    
 
-        public Jeton(string Symbole,int Point)
+
+        public Jeton(string Symbole, int Point)
         {
-            Symbole =  symbole;
+            Symbole = symbole;
             Point = point;
-      
+
 
         }
 
-     
+
     }
 }

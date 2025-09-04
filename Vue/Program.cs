@@ -1,10 +1,10 @@
 ﻿using System;
-using Puissance4.Controleurs;
+using jeuPuissance4.Controleur;
 
 /// <summary>
 /// Namepspace de l'application.
 /// </summary>
-namespace Puissance4.Vues
+namespace jeuPuissance4.Vue
 {
     /// <summary>
     /// Classe représentant le programme principale de l'application.

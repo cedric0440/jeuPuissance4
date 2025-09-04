@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using jeuPuissance4.Modele;
 
 
-namespace jeuPuissance4
+namespace jeuPuissance4.Controleur
 {
     public class ControleurPuissance4
     {
@@ -25,7 +26,7 @@ namespace jeuPuissance4
 
         public void JouerTour(int joueur, int indiceColonne)
         {
-            Joueur Joueur = (joueur == 1) ? joueur1 : joueur2;
+            Joueur Joueur = joueur == 1 ? joueur1 : joueur2;
 
             int rangee = plateau.GetIndiceRangee(indiceColonne);
             if (rangee != -1)

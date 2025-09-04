@@ -1,4 +1,4 @@
-﻿using jeuPuissance4;
+﻿using jeuPuissance4.Modele;
 
 public class Plateau
 {
