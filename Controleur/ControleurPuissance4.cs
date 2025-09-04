@@ -81,7 +81,14 @@ namespace jeuPuissance4.Controleur
         }
         public void DeterminerGagnant(int joueur)
         {
-            
+            if (plateau.DeterminerGagnant(Jeton.CHECK_POINT_1))
+            {
+                joueur1.Gagnant = true;
+            }
+            else if (plateau.DeterminerGagnant(Jeton.CHECK_POINT_2))
+            {
+                joueur2.Gagnant = true;
+            }
         }
         public bool IsTermine()
         {
