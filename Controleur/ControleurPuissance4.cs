@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using jeuPuissance4.Modele;
-
 
 namespace jeuPuissance4.Controleur
 {
@@ -19,67 +14,80 @@ namespace jeuPuissance4.Controleur
         {
             compteurTour = 0;
             plateau = new Plateau();
+
             joueur1 = new Joueur(nomJoueur1, Jeton.JETON_X, Jeton.POINTS_1);
             joueur2 = new Joueur(nomJoueur2, Jeton.JETON_O, Jeton.POINTS_2);
         }
 
-
         public void JouerTour(int joueur, int indiceColonne)
         {
-            Joueur Joueur = joueur == 1 ? joueur1 : joueur2;
+            // Utiliser le paramètre joueur pour déterminer le joueur actuel
+            Joueur joueurActuel = (joueur == 1) ? joueur1 : joueur2;
 
             int rangee = plateau.GetIndiceRangee(indiceColonne);
-            if (rangee != -1)
+            if (rangee >= 0)
             {
-                plateau.PlacerJeton(indiceColonne, rangee, Joueur.GetJeton());
+                joueurActuel.ProcederChoix(ref plateau, indiceColonne, rangee);
+                DeterminerGagnant(); // Pas besoin de paramètre
                 compteurTour++;
             }
         }
+
         public string ObtenirPlateau()
         {
-            return plateau.ToString();
+            string result = "";
+            for (int ligne = 0; ligne < Plateau.NOMBRE_RANGEES; ligne++) // ou NOMBRE_RANGEE selon votre classe Plateau
+            {
+                for (int col = 0; col < Plateau.NOMBRE_COLONNES; col++)
+                {
+                    Jeton j = plateau.GetJeton(col, ligne);
+                    result += (j != null ? j.Symbole : ".") + " ";
+                }
+                result += "\n";
+            }
+            return result;
         }
+
         public string ObtenirMessageGagnant()
         {
-            if (IsGagnant())
+            if (IsTermine())
             {
-                if (compteurTour % 2 == 0)
-                {
-                    Joueur gagnant = joueur2;
-                    return "Joueur2 gagnant";
-                }
-                else
-                {
-                    Joueur gagnant = joueur1;
-                    return "Joueur1 gagnant";
-                }
+            if (joueur1.Gagnant) return $"Le gagnant est {joueur1}";
+            if (joueur2.Gagnant) return $"Le gagnant est {joueur2}";
+            if (IsPlateauPlein()) return "Match nul !";
+                
             }
-            return "match nul";
-
+            return "Aucun gagnant pour l'instant.";
         }
+
         public bool IsGagnant()
         {
-            return plateau.DeterminerGagnant(joueur1.CheckPoint) || plateau.DeterminerGagnant(joueur2.CheckPoint);
+            return joueur1.Gagnant || joueur2.Gagnant;
         }
+
         public int GetCompteurTour()
         {
             return compteurTour;
         }
+
         public string GetSymbole(int numeroJoueur)
         {
             if (numeroJoueur == 1)
             {
                 return joueur1.GetJeton().Symbole;
             }
-            else{ 
+            else
+            {
                 return joueur2.GetJeton().Symbole;
             }
         }
+
         public bool IsCaseDisponible(int colonne)
         {
             return plateau.IsCaseDisponible(colonne);
         }
-        public void DeterminerGagnant(int joueur)
+
+        public void DeterminerGagnant()
         {
             if (plateau.DeterminerGagnant(Jeton.CHECK_POINT_1))
             {
@@ -90,9 +98,25 @@ namespace jeuPuissance4.Controleur
                 joueur2.Gagnant = true;
             }
         }
-        public bool IsTermine()
+
+        // Méthode helper pour vérifier si le plateau est plein
+        private bool IsPlateauPlein()
         {
+            for (int col = 0; col < Plateau.NOMBRE_COLONNES; col++)
+            {
+                if (plateau.IsCaseDisponible(col))
+                {
+                    return false;
+                }
+            }
             return true;
         }
+
+        public bool IsTermine()
+        {
+            return IsGagnant() || ;
+        }
+
+  
     }
 }
