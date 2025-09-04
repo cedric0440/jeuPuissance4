@@ -12,7 +12,7 @@ namespace jeuPuissance4.Controleur
 
         public ControleurPuissance4(string nomJoueur1, string nomJoueur2)
         {
-            compteurTour = 0;
+            compteurTour = 1;
             plateau = new Plateau();
 
             joueur1 = new Joueur(nomJoueur1, Jeton.JETON_X, Jeton.POINTS_1);
@@ -21,14 +21,14 @@ namespace jeuPuissance4.Controleur
 
         public void JouerTour(int joueur, int indiceColonne)
         {
-            // Utiliser le paramètre joueur pour déterminer le joueur actuel
+            
             Joueur joueurActuel = (joueur == 1) ? joueur1 : joueur2;
 
             int rangee = plateau.GetIndiceRangee(indiceColonne);
             if (rangee >= 0)
             {
                 joueurActuel.ProcederChoix(ref plateau, indiceColonne, rangee);
-                DeterminerGagnant(); // Pas besoin de paramètre
+                DeterminerGagnant(); 
                 compteurTour++;
             }
         }
@@ -36,7 +36,7 @@ namespace jeuPuissance4.Controleur
         public string ObtenirPlateau()
         {
             string result = "";
-            for (int ligne = 0; ligne < Plateau.NOMBRE_RANGEES; ligne++) // ou NOMBRE_RANGEE selon votre classe Plateau
+            for (int ligne = 0; ligne < Plateau.NOMBRE_RANGEES; ligne++) 
             {
                 for (int col = 0; col < Plateau.NOMBRE_COLONNES; col++)
                 {
@@ -91,12 +91,11 @@ namespace jeuPuissance4.Controleur
         {
             if (plateau.DeterminerGagnant(4))
             {
-                // Vérifier quel joueur a placé le dernier coup
-                // Ici on part du principe que le compteurTour te dit qui a joué
+               
                 if (compteurTour % 2 == 0)
-                    joueur1.Gagnant = true;
-                else
                     joueur2.Gagnant = true;
+                else
+                    joueur1.Gagnant = true;
             }
         }
 

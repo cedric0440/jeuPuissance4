@@ -24,15 +24,18 @@ namespace jeuPuissance4.Modele
         }
 
         private int point { get; set; }
-
-
-        public Jeton(string Symbole, int Point)
+        public int Point
         {
-            Symbole = symbole;
-            Point = point;
-
-
+            get { return point; }
+            set { point = value; }
         }
+
+        public Jeton(string symbole, int point)
+        {
+            this.symbole = symbole;
+            this.point = point;
+        }
+
 
 
     }

@@ -20,7 +20,7 @@ namespace jeuPuissance4.Modele
             this.nom = nom;
             gagnant = false;
             checkPoints = 0;
-            jeton = new Jeton(" ", 0);
+           
 
         }
 
@@ -44,9 +44,9 @@ namespace jeuPuissance4.Modele
         }
         public Jeton GetJeton()
         {
-            return jeton;
-
+            return new Jeton(jeton.Symbole, jeton.Point);
         }
+
 
         public void setJeton(string symbole, int points)
         {
