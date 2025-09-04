@@ -63,7 +63,7 @@ namespace jeuPuissance4.Controleur
         }
         public int GetCompteurTour()
         {
-            return 1;
+            return compteurTour;
         }
         public string GetSymbole(int numeroJoueur)
         {
@@ -71,7 +71,7 @@ namespace jeuPuissance4.Controleur
         }
         public bool IsCaseDisponible(int colonne)
         {
-            return true;
+            return plateau.IsCaseDisponible(colonne);
         }
         public void DeterminerGagnant(int joueur)
         {
