@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace jeuPuissance4.Modele
 {
+    /// <summary>
+    /// Classe Jeton
+    /// </summary>
     public class Jeton
     {
         public const string JETON_X = "X";
@@ -17,19 +20,28 @@ namespace jeuPuissance4.Modele
         public const int CHECK_POINT_2 = -4;
         private string symbole;
 
+        /// <summary>
+        /// Attribut symbole 
+        /// </summary>
         public string Symbole
         {
             get { return symbole; }
             set { symbole = value; }
         }
-
+        /// <summary>
+        /// Attribut point
+        /// </summary>
         private int point { get; set; }
         public int Point
         {
             get { return point; }
             set { point = value; }
         }
-
+        /// <summary>
+        /// Constructeur
+        /// </summary>
+        /// <param name="symbole"> symbole </param>
+        /// <param name="point">point</param>
         public Jeton(string symbole, int point)
         {
             this.symbole = symbole;

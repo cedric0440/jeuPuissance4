@@ -1,18 +1,40 @@
 ﻿using jeuPuissance4.Modele;
-
-public class Plateau
+namespace jeuPuissance4.Modele
 {
+    /// <summary>
+    /// Classe plateau 
+    /// </summary>
+public class Plateau
+{   
+        /// <summary>
+        /// Constante Nombre Cases
+        /// </summary>
     public const int NOMBRE_CASES = 42;
+        /// <summary>
+        /// Constante Nombre colonnes 
+        /// </summary>
     public const int NOMBRE_COLONNES = 7;
+        /// <summary>
+        /// Constante noombre rangees
+        /// </summary>
     public const int NOMBRE_RANGEES = 6;
-
+        /// <summary>
+        /// Attribut jeton
+        /// </summary>
     private Jeton[,] plateau;
-
+        /// <summary>
+        /// Constructeur
+        /// </summary>
     public Plateau()
     {
         plateau = new Jeton[NOMBRE_RANGEES, NOMBRE_COLONNES];
     }
-
+        /// <summary>
+        /// Methode qui permet d'obtenir les jetons
+        /// </summary>
+        /// <param name="colonne"></param>
+        /// <param name="ligne"></param>
+        /// <returns></returns>
     public Jeton GetJeton(int colonne, int ligne)
     {
         if (colonne < 0 || colonne >= NOMBRE_COLONNES || ligne < 0 || ligne >= NOMBRE_RANGEES)
@@ -20,7 +42,12 @@ public class Plateau
 
         return plateau[ligne, colonne];
     }
-
+        /// <summary>
+        /// Methode qui permet de placer les jetons
+        /// </summary>
+        /// <param name="colonne"></param>
+        /// <param name="ligne"></param>
+        /// <param name="jeton"></param>
     public void PlacerJeton(int colonne, int ligne, Jeton jeton)
     {
         if (colonne >= 0 && colonne < NOMBRE_COLONNES &&
@@ -29,12 +56,19 @@ public class Plateau
             plateau[ligne, colonne] = jeton;
         }
     }
-
+        /// <summary>
+        /// Methode qui permet d'obtenir le nombre de cases
+        /// </summary>
+        /// <returns></returns>
     public int GetNombreCase()
     {
         return NOMBRE_CASES;
     }
-
+        /// <summary>
+        /// Methode qui permet de derterminer gagnant
+        /// </summary>
+        /// <param name="checkPoint"></param>
+        /// <returns></returns>
     public bool DeterminerGagnant(int checkPoint)
     {
         const int JETONS_ALIGNES_POUR_GAGNER = 4;
@@ -101,7 +135,11 @@ public class Plateau
     }
 
 
-
+        /// <summary>
+        /// Methode qui permer de determiner si il y'a lesw cases disponibles 
+        /// </summary>
+        /// <param name="colonne"></param>
+        /// <returns></returns>
     public bool IsCaseDisponible(int colonne)
     {
         if (colonne < 0 || colonne >= NOMBRE_COLONNES)
@@ -110,7 +148,11 @@ public class Plateau
         // Vérifier si la case du haut de la colonne est libre
         return plateau[0, colonne] == null;
     }
-
+        /// <summary>
+        /// Permet de determiner la rangee
+        /// </summary>
+        /// <param name="colonne"></param>
+        /// <returns></returns>
     public int GetIndiceRangee(int colonne)
     {
         if (colonne < 0 || colonne >= NOMBRE_COLONNES)
@@ -128,4 +170,5 @@ public class Plateau
         // Colonne pleine
         return -1;
     }
+}
 }
