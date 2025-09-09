@@ -99,6 +99,7 @@ namespace jeuPuissance4.Controleur
             else if (compteurTour > Plateau.NOMBRE_CASES)
             {
 
+
             return "Egalité.";
             }
             return "Aucun gagnant pour le moment";        }
