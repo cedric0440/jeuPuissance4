@@ -34,8 +34,16 @@ namespace jeuPuissance4.Controleur
         /// <param name="indiceColonne"> colonne du plateau</param>
         public void JouerTour(int joueur, int indiceColonne)
         {
-            
-            Joueur joueurActuel = (joueur == 1) ? joueur1 : joueur2;
+
+            Joueur joueurActuel;
+            if (joueur == 1)
+            {
+                joueurActuel = joueur1;
+            }
+            else
+            {
+                joueurActuel = joueur2;
+            }
 
             int rangee = plateau.GetIndiceRangee(indiceColonne);
             if (rangee >= 0)
@@ -56,10 +64,17 @@ namespace jeuPuissance4.Controleur
             {
                 for (int col = 0; col < Plateau.NOMBRE_COLONNES; col++)
                 {
-                    Jeton j = plateau.GetJeton(col, ligne);
-                    result += (j != null ? j.Symbole : ".") + " ";
+                    Jeton jeton = plateau.GetJeton(col, ligne);
+                    if (jeton != null)
+                    {
+                        result += jeton.Symbole + " ";
+                    }
+                    else
+                    {
+                        result += ". ";
+                    }
                 }
-                result += "\n";
+                result += "\n"; 
             }
             return result;
         }
@@ -71,12 +86,22 @@ namespace jeuPuissance4.Controleur
         {
             if (IsTermine())
             {
-            if (joueur1.Gagnant) return $"Le gagnant est joueur1";
-            if (joueur2.Gagnant) return $"Le gagnant est joueur2";
+                if (joueur1.Gagnant)
+                {
+                    return "Le gagnant est joueur1";
+                }
+                else if (joueur2.Gagnant)
+                {
+                    return "Le gagnant est joueur2";
+                }
             
             }
-            return "Aucun gagnant pour l'instant.";
-        }
+            else if (compteurTour > Plateau.NOMBRE_CASES)
+            {
+
+            return "Egalité.";
+            }
+            return "Aucun gagnant pour le moment";        }
         /// <summary>
         /// Methode qui designe si il y'a un gagnant
         /// </summary>
@@ -133,9 +158,6 @@ namespace jeuPuissance4.Controleur
                     joueur1.Gagnant = true;
             }
         }
-
-
-
 
         /// <summary>
         /// Methode qui dit si le jeu est terminé 
