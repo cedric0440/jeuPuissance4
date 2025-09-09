@@ -71,7 +71,7 @@ public class Plateau
         /// <returns></returns>
     public bool DeterminerGagnant(int checkPoint)
     {
-        const int JETONS_ALIGNES_POUR_GAGNER = 4;
+         int JETONS_ALIGNES_POUR_GAGNER = checkPoint;
 
         for (int ligne = 0; ligne < NOMBRE_RANGEES; ligne++)
         {
