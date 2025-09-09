@@ -1,8 +1,12 @@
 ﻿using System;
 using jeuPuissance4.Modele;
 
+
 namespace jeuPuissance4.Controleur
 {
+    /// <summary>
+    /// Controleur de la vue 
+    /// </summary>
     public class ControleurPuissance4
     {
         private int compteurTour;
@@ -10,6 +14,11 @@ namespace jeuPuissance4.Controleur
         private Joueur joueur1;
         private Joueur joueur2;
 
+        /// <summary>
+        /// Constructeur 
+        /// </summary>
+        /// <param name="nomJoueur1"> Joueur1</param>
+        /// <param name="nomJoueur2"> Joueur2</param>
         public ControleurPuissance4(string nomJoueur1, string nomJoueur2)
         {
             compteurTour = 1;
@@ -18,7 +27,11 @@ namespace jeuPuissance4.Controleur
             joueur1 = new Joueur(nomJoueur1, Jeton.JETON_X, Jeton.POINTS_1);
             joueur2 = new Joueur(nomJoueur2, Jeton.JETON_O, Jeton.POINTS_2);
         }
-
+        /// <summary>
+        /// Methode qui permettre de jouer 
+        /// </summary>
+        /// <param name="joueur"> </param>
+        /// <param name="indiceColonne"> colonne du plateau</param>
         public void JouerTour(int joueur, int indiceColonne)
         {
             
@@ -32,7 +45,10 @@ namespace jeuPuissance4.Controleur
                 compteurTour++;
             }
         }
-
+        /// <summary>
+        /// Methode permettant d'obtenir l'affichage du plateau 
+        /// </summary>
+        /// <returns></returns>
         public string ObtenirPlateau()
         {
             string result = "";
@@ -47,7 +63,10 @@ namespace jeuPuissance4.Controleur
             }
             return result;
         }
-
+        /// <summary>
+        /// Methode qui renvoie le message a la fin du jeu 
+        /// </summary>
+        /// <returns></returns>
         public string ObtenirMessageGagnant()
         {
             if (IsTermine())
@@ -58,18 +77,28 @@ namespace jeuPuissance4.Controleur
             }
             return "Aucun gagnant pour l'instant.";
         }
-
+        /// <summary>
+        /// Methode qui designe si il y'a un gagnant
+        /// </summary>
+        /// <returns></returns>
         public bool IsGagnant()
         {
             return plateau.DeterminerGagnant(4);
         }
 
-
+        /// <summary>
+        /// Methode qui determine le nombre de tour qui a ete jouer
+        /// </summary>
+        /// <returns></returns>
         public int GetCompteurTour()
         {
             return compteurTour;
         }
-
+        /// <summary>
+        /// Methode qui determine le symbole du joueur 
+        /// </summary>
+        /// <param name="numeroJoueur"> le numero du joueur</param>
+        /// <returns></returns>
         public string GetSymbole(int numeroJoueur)
         {
             if (numeroJoueur == 1)
@@ -81,12 +110,18 @@ namespace jeuPuissance4.Controleur
                 return joueur2.GetJeton().Symbole;
             }
         }
-
+        /// <summary>
+        /// Methode qui determine si il y'a les cases disponibles 
+        /// </summary>
+        /// <param name="colonne"> nombre de colonne </param>
+        /// <returns></returns>
         public bool IsCaseDisponible(int colonne)
         {
             return plateau.IsCaseDisponible(colonne);
         }
-
+        /// <summary>
+        /// Methode qui determine le gagnant 
+        /// </summary>
         public void DeterminerGagnant()
         {
             if (plateau.DeterminerGagnant(4))
@@ -102,7 +137,10 @@ namespace jeuPuissance4.Controleur
 
 
 
-
+        /// <summary>
+        /// Methode qui dit si le jeu est terminé 
+        /// </summary>
+        /// <returns></returns>
         public bool IsTermine()
         {
             return (compteurTour >= Plateau.NOMBRE_CASES) || IsGagnant();
